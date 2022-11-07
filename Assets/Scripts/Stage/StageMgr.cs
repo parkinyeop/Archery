@@ -56,12 +56,34 @@ public class StageMgr : MonoBehaviour
             return;
         }
 
-        if (currentStage % 5 != 0)
+        if (currentStage % 5 != 0) //Normal Stage
         {
             int arrayIndex = currentStage / 10;
             int randomIndex = Random.Range(0, startPositionArrays[arrayIndex].StartPosition.Count);
             player.transform.position = startPositionArrays[arrayIndex].StartPosition[randomIndex].position;
             startPositionArrays[arrayIndex].StartPosition.RemoveAt(randomIndex);
         }
+        else
+        {
+            if(currentStage % 10 == 5)  //Angel
+            {
+                int randomIndex = Random.Range(0, StartPositionAngel.Count);
+                player.transform.position = StartPositionAngel[randomIndex].position;
+            }
+            else
+            {
+                if(currentStage == LastStage)
+                {
+                    player.transform.position = StartPositionLastBoss.position;
+                }
+                else
+                {
+                    int randomIndex = Random.Range(0,StartPositionBoss.Count);
+                    player.transform.position = StartPositionBoss[randomIndex].position;
+                    StartPositionBoss.RemoveAt(randomIndex / 10);
+                }
+            }
+        }
+        CameraMovement.Instance.CameraNextRoom();
     }
 }

@@ -51,7 +51,7 @@ public class PlayerTargeting : MonoBehaviour
     {
         SetTarget();
         AtkTarget();
-
+        //PlayerMovement.Instance.animator.SetBool("Attack", true);
     }
 
     void Attack()
@@ -128,7 +128,6 @@ public class PlayerTargeting : MonoBehaviour
                 PlayerMovement.Instance.animator.SetBool("Walk", false);
                 PlayerMovement.Instance.animator.SetBool("Attack", true);
             }
-            Attack();
         }
 
         else if (JoyStickMovement.Instance.isPlayerMoving)
