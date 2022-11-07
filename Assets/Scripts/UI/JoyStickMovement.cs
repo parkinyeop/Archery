@@ -29,6 +29,7 @@ public class JoyStickMovement : MonoBehaviour
     public Vector3 joyVec;
     Vector3 joyStickFirstPosition;
     float stickRadius;
+    public bool isPlayerMoving = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,14 @@ public class JoyStickMovement : MonoBehaviour
         stickFirstPosition = Input.mousePosition;
 
         //SetTrigger 이동 애니메이션 연결
+        if (!PlayerMovement.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"))
+        {
+            PlayerMovement.Instance.animator.SetBool("Attack", false);
+            PlayerMovement.Instance.animator.SetBool("Idle", false);
+            PlayerMovement.Instance.animator.SetBool("Walk", true);
+        }
+        isPlayerMoving = true;
+        PlayerTargeting.Instance.getATarget = false;
     }
 
     public void Drag(BaseEventData baseEventData)
@@ -51,9 +60,6 @@ public class JoyStickMovement : MonoBehaviour
         PointerEventData pointerEventData = baseEventData as PointerEventData;
         Vector3 DragPosition = pointerEventData.position;
         joyVec = (DragPosition - stickFirstPosition).normalized;
-        
-        //Debug.Log(DragPosition);
-
         float stickDistance = Vector3.Distance(DragPosition, stickFirstPosition);
 
         if (stickDistance < stickRadius)
@@ -71,6 +77,14 @@ public class JoyStickMovement : MonoBehaviour
         joyVec = Vector3.zero;
         bgStick.transform.position = joyStickFirstPosition;
         smallStick.transform.position = joyStickFirstPosition;
-        //SetTrigger 아이들 애니메이션으로 연결
+        
+        if(!PlayerMovement.Instance.animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            PlayerMovement.Instance.animator.SetBool("Attack", false);
+            PlayerMovement.Instance.animator.SetBool("Idle", true);
+            PlayerMovement.Instance.animator.SetBool("Walk", false);
+        }
+
+        isPlayerMoving = false;
     }
 }
