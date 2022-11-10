@@ -37,6 +37,7 @@ public class PlayerHpBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = transform.parent.transform.GetChild(0);
     }
 
     // Update is called once per frame

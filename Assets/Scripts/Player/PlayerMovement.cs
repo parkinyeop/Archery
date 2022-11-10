@@ -53,9 +53,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if(other.transform.CompareTag("NextRoom"))
         {
             StageMgr.Instance.NextStage();
+        }
+
+        if(other.transform.CompareTag("HpBooster"))
+        {
+            PlayerHpBar.Instance.GetHpBoost();
+            Destroy(other.gameObject);
+        }
+
+        if(other.transform.CompareTag("MeleeAtk"))
+        {
+            other.transform.parent.GetComponent<EnemyDuck>().meleeAtkArea.SetActive(false);
+            PlayerHpBar.Instance.currentHp -= other.transform.parent.GetComponent<EnemyDuck>().damage *2f;
+
+            if(!animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit"))
+            {
+                animator.SetTrigger("GetHit");
+                Instantiate(EffectSet.Instance.PlayerDmgEffect, PlayerTargeting.Instance.AttackPoint.position, Quaternion.Euler(90,0,0));
+            }
         }
     }
 }

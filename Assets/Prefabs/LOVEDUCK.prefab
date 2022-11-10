@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1070272057
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1070272058}
+  - component: {fileID: 1070272059}
+  m_Layer: 6
+  m_Name: MeleeAtk
+  m_TagString: MeleeAtk
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1070272058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070272057}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8369316934976381562}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1070272059
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070272057}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 0, y: 4, z: 0}
 --- !u!1 &8367749787963583112
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,8 +1511,10 @@ GameObject:
   - component: {fileID: 8369316934976381562}
   - component: {fileID: 8369316934968887526}
   - component: {fileID: 8369316934349186894}
-  - component: {fileID: 8369316934349186895}
+  - component: {fileID: 3499958894086650127}
   - component: {fileID: 7569457745755371457}
+  - component: {fileID: 1735526782}
+  - component: {fileID: 1735526783}
   m_Layer: 6
   m_Name: LOVEDUCK
   m_TagString: Monster
@@ -1491,6 +1538,7 @@ Transform:
   - {fileID: 8369316934976381510}
   - {fileID: 8369316934976381504}
   - {fileID: 8373585809191581404}
+  - {fileID: 1070272058}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1530,19 +1578,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &8369316934349186895
-SphereCollider:
+--- !u!195 &3499958894086650127
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8369316934976026266}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: 0, y: 4, z: 0}
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!65 &7569457745755371457
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1552,7 +1609,43 @@ BoxCollider:
   m_GameObject: {fileID: 8369316934976026266}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 7, y: 9, z: 7}
   m_Center: {x: 0, y: 4, z: 0}
+--- !u!114 &1735526782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369316934976026266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756e3c0ae2f3cc847887ead882604fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCanvasGo: {fileID: 0}
+--- !u!114 &1735526783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8369316934976026266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838541a0ba434c44ea22d9ffd0707a74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHp: 1000
+  currentHp: 1000
+  damage: 100
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  currentState: 0
+  enemyCansGo: {fileID: 0}
+  meleeAtkArea: {fileID: 0}
+  agent: {fileID: 3499958894086650127}
+  player: {fileID: 0}

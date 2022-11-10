@@ -173,7 +173,7 @@ public class PlayerTargeting : MonoBehaviour
                     Gizmos.color = Color.red;
                 }
 
-                Gizmos.DrawRay(transform.position, MonsterList[i].transform.GetChild(0).position - transform.position);
+                //Gizmos.DrawRay(transform.position, MonsterList[i].transform.GetChild(0).position - transform.position);
 
             }
         }

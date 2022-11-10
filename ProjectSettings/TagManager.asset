@@ -7,6 +7,10 @@ TagManager:
   - Monster
   - Wall
   - NextRoom
+  - Ball
+  - MeleeAtk
+  - FxTemporaire
+  - HpBooster
   layers:
   - Default
   - TransparentFX
@@ -16,7 +20,7 @@ TagManager:
   - UI
   - Monster
   - Ball
-  - 
+  - Player
   - 
   - 
   - 
